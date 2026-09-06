@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { fetchApi } from '@/lib/api';
-import { PlusCircle, ArrowLeft } from 'lucide-react';
+import { PlusCircle, ArrowLeft } from '@phosphor-icons/react';
 import Link from 'next/link';
 
 export default function NewBatchPage() {
@@ -64,12 +64,12 @@ export default function NewBatchPage() {
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <div className="flex items-center mb-8">
-        <Link href="/admin/dashboard" className="p-2 mr-4 hover:bg-slate-200 rounded-full transition text-slate-600">
+        <Link href="/admin/dashboard" className="p-2 mr-4 hover:bg-slate-200 rounded-full transition text-muted-fg">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Register New Batch</h1>
-          <p className="text-slate-500 mt-1">Record a new honey harvest onto the blockchain</p>
+          <h1 className="text-2xl font-bold text-foreground">Register New Batch</h1>
+          <p className="text-muted-fg mt-1">Record a new honey harvest onto the blockchain</p>
         </div>
       </div>
 
@@ -79,51 +79,51 @@ export default function NewBatchPage() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-8">
+      <form onSubmit={handleSubmit} className="bg-card-bg rounded-2xl shadow-sm border border-card-border p-8 space-y-8">
         
         {/* Section: Origin */}
         <div>
-          <h2 className="text-lg font-semibold text-slate-900 mb-4 pb-2 border-b border-slate-100">Origin Information</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-card-border">Origin Information</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="hive_id" className="block text-sm font-medium text-slate-700 mb-1">Hive ID *</label>
-              <input type="text" id="hive_id" name="hive_id" required value={formData.hive_id} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900" placeholder="e.g. HIVE-KA-001" />
+              <label htmlFor="hive_id" className="block text-sm font-medium text-foreground mb-1">Hive ID *</label>
+              <input type="text" id="hive_id" name="hive_id" required value={formData.hive_id} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground" placeholder="e.g. HIVE-KA-001" />
             </div>
             <div>
-              <label htmlFor="hive_location" className="block text-sm font-medium text-slate-700 mb-1">Hive Location / Region</label>
-              <input type="text" id="hive_location" name="hive_location" value={formData.hive_location} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900" placeholder="e.g. Coorg, Karnataka" />
+              <label htmlFor="hive_location" className="block text-sm font-medium text-foreground mb-1">Hive Location / Region</label>
+              <input type="text" id="hive_location" name="hive_location" value={formData.hive_location} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground" placeholder="e.g. Coorg, Karnataka" />
             </div>
             <div>
-              <label htmlFor="beekeeper_id" className="block text-sm font-medium text-slate-700 mb-1">Beekeeper ID *</label>
-              <input type="text" id="beekeeper_id" name="beekeeper_id" required value={formData.beekeeper_id} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900" />
+              <label htmlFor="beekeeper_id" className="block text-sm font-medium text-foreground mb-1">Beekeeper ID *</label>
+              <input type="text" id="beekeeper_id" name="beekeeper_id" required value={formData.beekeeper_id} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground" />
             </div>
             <div>
-              <label htmlFor="beekeeper_name" className="block text-sm font-medium text-slate-700 mb-1">Beekeeper Name</label>
-              <input type="text" id="beekeeper_name" name="beekeeper_name" value={formData.beekeeper_name} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900" />
+              <label htmlFor="beekeeper_name" className="block text-sm font-medium text-foreground mb-1">Beekeeper Name</label>
+              <input type="text" id="beekeeper_name" name="beekeeper_name" value={formData.beekeeper_name} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground" />
             </div>
             <div className="md:col-span-2">
-              <label htmlFor="beekeeper_addr" className="block text-sm font-medium text-slate-700 mb-1">Beekeeper Ethereum Address *</label>
-              <input type="text" id="beekeeper_addr" name="beekeeper_addr" required value={formData.beekeeper_addr} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900 font-mono text-sm" placeholder="0x..." />
-              <p className="text-xs text-slate-500 mt-1">This address will be the initial custodian on-chain.</p>
+              <label htmlFor="beekeeper_addr" className="block text-sm font-medium text-foreground mb-1">Beekeeper Ethereum Address *</label>
+              <input type="text" id="beekeeper_addr" name="beekeeper_addr" required value={formData.beekeeper_addr} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground font-mono text-sm" placeholder="0x..." />
+              <p className="text-xs text-muted-fg mt-1">This address will be the initial custodian on-chain.</p>
             </div>
           </div>
         </div>
 
         {/* Section: Product */}
         <div>
-          <h2 className="text-lg font-semibold text-slate-900 mb-4 pb-2 border-b border-slate-100">Harvest Details</h2>
+          <h2 className="text-lg font-semibold text-foreground mb-4 pb-2 border-b border-card-border">Harvest Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="harvest_date" className="block text-sm font-medium text-slate-700 mb-1">Harvest Date *</label>
-              <input type="date" id="harvest_date" name="harvest_date" required value={formData.harvest_date} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900" />
+              <label htmlFor="harvest_date" className="block text-sm font-medium text-foreground mb-1">Harvest Date *</label>
+              <input type="date" id="harvest_date" name="harvest_date" required value={formData.harvest_date} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground" />
             </div>
             <div>
-              <label htmlFor="quantity_kg" className="block text-sm font-medium text-slate-700 mb-1">Quantity (kg) *</label>
-              <input type="number" id="quantity_kg" step="0.01" min="0" name="quantity_kg" required value={formData.quantity_kg} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900" />
+              <label htmlFor="quantity_kg" className="block text-sm font-medium text-foreground mb-1">Quantity (kg) *</label>
+              <input type="number" id="quantity_kg" step="0.01" min="0" name="quantity_kg" required value={formData.quantity_kg} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground" />
             </div>
             <div>
-              <label htmlFor="honey_type" className="block text-sm font-medium text-slate-700 mb-1">Honey Type *</label>
-              <select id="honey_type" name="honey_type" required value={formData.honey_type} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900 bg-white">
+              <label htmlFor="honey_type" className="block text-sm font-medium text-foreground mb-1">Honey Type *</label>
+              <select id="honey_type" name="honey_type" required value={formData.honey_type} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground bg-card-bg">
                 <option value="">Select type...</option>
                 <option value="Multiflora">Multiflora</option>
                 <option value="Mustard">Mustard</option>
@@ -134,8 +134,8 @@ export default function NewBatchPage() {
               </select>
             </div>
             <div>
-              <label htmlFor="quality_grade" className="block text-sm font-medium text-slate-700 mb-1">Quality Grade</label>
-              <select id="quality_grade" name="quality_grade" value={formData.quality_grade} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900 bg-white">
+              <label htmlFor="quality_grade" className="block text-sm font-medium text-foreground mb-1">Quality Grade</label>
+              <select id="quality_grade" name="quality_grade" value={formData.quality_grade} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground bg-card-bg">
                 <option value="">Standard</option>
                 <option value="A">Grade A</option>
                 <option value="A+">Grade A+</option>
@@ -143,20 +143,20 @@ export default function NewBatchPage() {
               </select>
             </div>
             <div className="md:col-span-2">
-              <label htmlFor="lab_report_link" className="block text-sm font-medium text-slate-700 mb-1">Lab Report URL</label>
-              <input type="url" id="lab_report_link" name="lab_report_link" value={formData.lab_report_link} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-slate-900" placeholder="https://..." />
+              <label htmlFor="lab_report_link" className="block text-sm font-medium text-foreground mb-1">Lab Report URL</label>
+              <input type="url" id="lab_report_link" name="lab_report_link" value={formData.lab_report_link} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 outline-none text-foreground" placeholder="https://..." />
             </div>
           </div>
         </div>
 
         <div className="pt-4 flex justify-end">
-          <Link href="/admin/dashboard" className="px-6 py-2.5 text-slate-600 font-medium hover:bg-slate-100 rounded-lg transition mr-4">
+          <Link href="/admin/dashboard" className="px-6 py-2.5 text-muted-fg font-medium hover:bg-slate-100 rounded-lg transition mr-4">
             Cancel
           </Link>
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center px-6 py-2.5 bg-amber-500 text-white font-medium rounded-lg hover:bg-amber-600 transition disabled:opacity-70 shadow-sm"
+            className="flex items-center px-6 py-2.5 bg-background0 text-white font-medium rounded-lg hover:bg-primary-hover transition disabled:opacity-70 shadow-sm"
           >
             {loading ? (
               <div className="w-5 h-5 border-2 border-amber-200 border-t-white rounded-full animate-spin mr-2"></div>

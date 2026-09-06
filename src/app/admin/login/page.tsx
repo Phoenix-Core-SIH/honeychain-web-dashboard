@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { fetchApi } from '@/lib/api';
-import { Hexagon, Lock } from 'lucide-react';
+import { Hexagon, Lock } from '@phosphor-icons/react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -37,12 +37,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
+      <div className="max-w-md w-full bg-card-bg rounded-2xl shadow-xl overflow-hidden border border-card-border">
         
-        <div className="bg-slate-900 p-8 text-center text-white">
+        <div className="bg-primary p-8 text-center text-white">
           <div className="flex justify-center mb-4">
-            <Hexagon className="w-12 h-12 text-amber-500 fill-amber-500/20" />
+            <Hexagon className="w-12 h-12 text-primary fill-amber-500/20" />
           </div>
           <h1 className="text-2xl font-bold">HoneyChain Operator</h1>
           <p className="text-slate-400 mt-2 text-sm">Secure Supply Chain Access</p>
@@ -57,7 +57,7 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-slate-700 mb-1">Username</label>
+              <label htmlFor="username" className="block text-sm font-medium text-foreground mb-1">Username</label>
               <input
                 id="username"
                 type="text"
@@ -68,7 +68,7 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium text-foreground mb-1">Password</label>
               <input
                 id="password"
                 type="password"
@@ -82,7 +82,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center py-3 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition disabled:opacity-70 mt-6"
+              className="w-full flex items-center justify-center py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-hover transition disabled:opacity-70 mt-6"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-slate-300 border-t-white rounded-full animate-spin"></div>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { fetchApi } from '@/lib/api';
-import { Package, MapPin, Calendar, ExternalLink } from 'lucide-react';
+import { Package, MapPin, Calendar, ArrowSquareOut } from '@phosphor-icons/react';
 
 interface Batch {
   batch_id: string;
@@ -45,8 +45,8 @@ export default function DashboardPage() {
     <div className="p-8">
       <div className="flex justify-between items-end mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-          <p className="text-slate-500 mt-1">Overview of recent honey batches</p>
+          <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
+          <p className="text-muted-fg mt-1">Overview of recent honey batches</p>
         </div>
       </div>
 
@@ -58,44 +58,44 @@ export default function DashboardPage() {
 
       {loading ? (
         <div className="flex justify-center py-12">
-          <div className="w-10 h-10 border-4 border-slate-200 border-t-amber-500 rounded-full animate-spin"></div>
+          <div className="w-10 h-10 border-4 border-card-border border-t-amber-500 rounded-full animate-spin"></div>
         </div>
       ) : batches.length === 0 ? (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-12 text-center">
+        <div className="bg-card-bg rounded-2xl shadow-sm border border-card-border p-12 text-center">
           <Package className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-slate-900">No batches found</h3>
-          <p className="text-slate-500 mt-1">Create a new batch to get started.</p>
+          <h3 className="text-lg font-medium text-foreground">No batches found</h3>
+          <p className="text-muted-fg mt-1">Create a new batch to get started.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="bg-card-bg rounded-2xl shadow-sm border border-card-border overflow-hidden">
           <table className="min-w-full divide-y divide-slate-200">
-            <thead className="bg-slate-50">
+            <thead className="bg-background">
               <tr>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-muted-fg uppercase tracking-wider">
                   Batch ID
                 </th>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-muted-fg uppercase tracking-wider">
                   Honey Type
                 </th>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-muted-fg uppercase tracking-wider">
                   Quantity
                 </th>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-muted-fg uppercase tracking-wider">
                   Harvest Date
                 </th>
-                <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-muted-fg uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-slate-200">
+            <tbody className="bg-card-bg divide-y divide-slate-200">
               {batches.map((batch) => (
-                <tr key={batch.batch_id} className="hover:bg-slate-50 transition">
+                <tr key={batch.batch_id} className="hover:bg-background transition">
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-slate-900 font-mono">
+                    <div className="text-sm font-medium text-foreground font-mono">
                       {batch.batch_id.split('-')[0]}...
                     </div>
-                    <div className="text-xs text-slate-500 flex items-center mt-1">
+                    <div className="text-xs text-muted-fg flex items-center mt-1">
                       <MapPin className="w-3 h-3 mr-1" />
                       {batch.beekeeper_name || batch.hive_id}
                     </div>
@@ -104,14 +104,14 @@ export default function DashboardPage() {
                     <span className="px-2.5 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-amber-100 text-amber-800">
                       {batch.honey_type}
                     </span>
-                    <div className="text-xs text-slate-500 mt-1">
+                    <div className="text-xs text-muted-fg mt-1">
                       Grade: {batch.quality_grade || 'N/A'}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-700 font-medium">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-foreground font-medium">
                     {batch.quantity_kg} kg
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-fg">
                     <div className="flex items-center">
                       <Calendar className="w-4 h-4 mr-2 text-slate-400" />
                       {batch.harvest_date}
@@ -120,10 +120,10 @@ export default function DashboardPage() {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <Link
                       href={`/admin/batches/${batch.batch_id}`}
-                      className="inline-flex items-center text-amber-600 hover:text-amber-900 bg-amber-50 hover:bg-amber-100 px-3 py-1.5 rounded-lg transition"
+                      className="inline-flex items-center text-amber-600 hover:text-amber-900 bg-background hover:bg-amber-100 px-3 py-1.5 rounded-lg transition"
                     >
                       View Details
-                      <ExternalLink className="w-4 h-4 ml-1.5" />
+                      <ArrowSquareOut className="w-4 h-4 ml-1.5" />
                     </Link>
                   </td>
                 </tr>
