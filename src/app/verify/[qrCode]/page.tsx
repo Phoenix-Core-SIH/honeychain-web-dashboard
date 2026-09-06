@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { fetchApi } from '@/lib/api';
 import { CheckCircle, XCircle, Clock, MapPin, User, Hexagon, ArrowLeft, Drop } from '@phosphor-icons/react';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 
 interface CustodyStep {
@@ -31,12 +32,14 @@ interface VerifyResponse {
   warning?: string;
 }
 
-export default function VerifyResultPage({ params }: { params: { qrCode: string } }) {
+export default function VerifyResultPage() {
+  const params = useParams();
   const [data, setData] = useState<VerifyResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadData() {
+      if (!params?.qrCode) return;
       try {
         const response = await fetchApi<VerifyResponse>(`/public/verify/${params.qrCode}`);
         setData(response);
