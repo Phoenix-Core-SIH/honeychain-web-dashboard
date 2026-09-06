@@ -3,6 +3,10 @@ import { render, screen, waitFor } from '@testing-library/react';
 import VerifyResultPage from '@/app/verify/[qrCode]/page';
 import { fetchApi } from '@/lib/api';
 
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+  useParams: () => ({ qrCode: '0xa2dc0c0aff3f277b65af5f648ac36f1ed48e6e3d010a9b6ecfc04b49e62ab63a' })
+}));
 jest.mock('@/lib/api', () => ({
   fetchApi: jest.fn(),
 }));
@@ -14,7 +18,7 @@ describe('VerifyResultPage', () => {
 
   it('shows loading state initially', () => {
     (fetchApi as jest.Mock).mockReturnValue(new Promise(() => {})); // pending promise
-    render(<VerifyResultPage params={{ qrCode: 'JAR-123' }} />);
+    render(<VerifyResultPage />);
     expect(screen.getByText(/Verifying blockchain records/i)).toBeTruthy();
   });
 
@@ -31,7 +35,7 @@ describe('VerifyResultPage', () => {
       ]
     });
 
-    render(<VerifyResultPage params={{ qrCode: 'JAR-123' }} />);
+    render(<VerifyResultPage />);
 
     expect(await screen.findByText('Verified Authentic')).toBeTruthy();
     expect(screen.getByText('Multiflora')).toBeTruthy();
@@ -42,7 +46,7 @@ describe('VerifyResultPage', () => {
   it('renders failure state on API error', async () => {
     (fetchApi as jest.Mock).mockRejectedValueOnce(new Error('QR code not found'));
 
-    render(<VerifyResultPage params={{ qrCode: 'JAR-999' }} />);
+    render(<VerifyResultPage />);
 
     expect(await screen.findByText('Verification Failed')).toBeTruthy();
     expect(screen.getByText(/QR code not found/i)).toBeTruthy();

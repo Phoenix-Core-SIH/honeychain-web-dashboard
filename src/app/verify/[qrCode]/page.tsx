@@ -40,13 +40,14 @@ export default function VerifyResultPage() {
   useEffect(() => {
     async function loadData() {
       if (!params?.qrCode) return;
+      const qrCodeStr = Array.isArray(params?.qrCode) ? params.qrCode[0] : params?.qrCode as string;
       try {
-        const response = await fetchApi<VerifyResponse>(`/public/verify/${params.qrCode}`);
+        const response = await fetchApi<VerifyResponse>(`/public/verify/${qrCodeStr}`);
         setData(response);
       } catch (err: any) {
         setData({
           verified: false,
-          qr_id: params.qrCode,
+          qr_id: qrCodeStr,
           error: err.message || 'Verification failed. The code may be invalid or not yet activated on-chain.',
         });
       } finally {
